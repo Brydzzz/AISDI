@@ -20,10 +20,10 @@ def test_quick_words():
 
 
 def test_quick_random_100():
-    to_be_sort = generate_random_list(10000)
+    to_be_sort = generate_random_list(100)
     assert sorted_quicksort(to_be_sort) == sorted(to_be_sort)
 
 
 def test_quick_random_500():
-    to_be_sort = generate_random_list(1000)
+    to_be_sort = generate_random_list(500)
     assert sorted_quicksort(to_be_sort) == sorted(to_be_sort)
