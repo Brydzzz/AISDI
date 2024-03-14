@@ -27,3 +27,30 @@ def test_quick_random_100():
 def test_quick_random_500():
     to_be_sort = generate_random_list(500)
     assert sorted_quicksort(to_be_sort) == sorted(to_be_sort)
+
+
+def test_selection_basic():
+    to_be_sort = [4, 2, 7, 8, 9, 1, 2]
+    assert sorted_quicksort(to_be_sort) == sorted(to_be_sort)
+
+
+def test_selection_words():
+    to_be_sort = [
+        "Programowanie",
+        "bywa",
+        "przyjemne",
+        "szczególnie",
+        "gdy",
+        "wychodzi",
+    ]
+    assert sorted_quicksort(to_be_sort) == sorted(to_be_sort)
+
+
+def test_selection_random_100():
+    to_be_sort = generate_random_list(100)
+    assert sorted_quicksort(to_be_sort) == sorted(to_be_sort)
+
+
+def test_selection_random_500():
+    to_be_sort = generate_random_list(500)
+    assert sorted_quicksort(to_be_sort) == sorted(to_be_sort)
