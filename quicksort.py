@@ -13,6 +13,13 @@ def sorted_quicksort(sorted_arr):
 
 
 def quicksort(sorted_arr, p, r):
+    """
+    recurisve quicksort algorith:
+    arguments:
+    sorted_arr - dynamically mutated list
+    p - starting index
+    r - ending index
+    """
     if p < r:
         q = partition(sorted_arr, p, r)
         quicksort(sorted_arr, p, q - 1)
@@ -20,6 +27,11 @@ def quicksort(sorted_arr, p, r):
 
 
 def partition(sorted_arr, p, r):
+    """
+    partition function, which puts smaller than pivot
+    values on the left side of it, and bigger than pivot
+    values on the right side
+    """
     pv = sorted_arr[r]
     j = p
     for i in range(p, r):
