@@ -1,5 +1,6 @@
 from random import randint
 from quicksort import sorted_quicksort
+from bubblesort import bubble_sort
 
 
 def generate_random_list(size):
@@ -54,3 +55,23 @@ def test_selection_random_100():
 def test_selection_random_500():
     to_be_sort = generate_random_list(500)
     assert sorted_quicksort(to_be_sort) == sorted(to_be_sort)
+
+
+def test_bubble_basic():
+    to_be_sort = [8, 6, 3, 12, 67, 1, 2]
+    assert bubble_sort(to_be_sort) == sorted(to_be_sort)
+
+
+def test_bubble_words():
+    to_be_sort = ["Dua", "Lipa", "wydaje", "nowy", "album", "w", "maju"]
+    assert bubble_sort(to_be_sort) == sorted(to_be_sort)
+
+
+def test_bubble_random_100():
+    to_be_sort = generate_random_list(100)
+    assert bubble_sort(to_be_sort) == sorted(to_be_sort)
+
+
+def test_bubble_random_500():
+    to_be_sort = generate_random_list(500)
+    assert bubble_sort(to_be_sort) == sorted(to_be_sort)
