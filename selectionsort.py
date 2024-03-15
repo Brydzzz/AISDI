@@ -22,6 +22,6 @@ def selection_sort(sorted_arr):
             if sorted_arr[n] < smallest:
                 smallest = sorted_arr[n]
                 s_index = n
-        sorted_arr[i], sorted_arr[s_index], sorted_arr[s_index], sorted_arr[i]
+        sorted_arr[i], sorted_arr[s_index] = sorted_arr[s_index], sorted_arr[i]
         i += 1
-        return sorted_arr
+    return sorted_arr
