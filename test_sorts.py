@@ -1,6 +1,7 @@
 from random import randint
 from quicksort import sorted_quicksort
 from bubblesort import bubble_sort
+from selectionsort import sorted_selection
 
 
 def generate_random_list(size):
@@ -32,7 +33,7 @@ def test_quick_random_500():
 
 def test_selection_basic():
     to_be_sort = [4, 2, 7, 8, 9, 1, 2]
-    assert sorted_quicksort(to_be_sort) == sorted(to_be_sort)
+    assert sorted_selection(to_be_sort) == sorted(to_be_sort)
 
 
 def test_selection_words():
@@ -44,17 +45,17 @@ def test_selection_words():
         "gdy",
         "wychodzi",
     ]
-    assert sorted_quicksort(to_be_sort) == sorted(to_be_sort)
+    assert sorted_selection(to_be_sort) == sorted(to_be_sort)
 
 
 def test_selection_random_100():
     to_be_sort = generate_random_list(100)
-    assert sorted_quicksort(to_be_sort) == sorted(to_be_sort)
+    assert sorted_selection(to_be_sort) == sorted(to_be_sort)
 
 
 def test_selection_random_500():
     to_be_sort = generate_random_list(500)
-    assert sorted_quicksort(to_be_sort) == sorted(to_be_sort)
+    assert sorted_selection(to_be_sort) == sorted(to_be_sort)
 
 
 def test_bubble_basic():
