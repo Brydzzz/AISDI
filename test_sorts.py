@@ -2,6 +2,7 @@ from random import randint
 from quicksort import quick_sort
 from bubblesort import bubble_sort
 from selectionsort import selection_sort
+from mergesort import merge_sort
 
 
 def generate_random_list(size):
@@ -76,3 +77,23 @@ def test_bubble_random_100():
 def test_bubble_random_500():
     to_be_sort = generate_random_list(500)
     assert bubble_sort(to_be_sort) == sorted(to_be_sort)
+
+
+def test_merge_basic():
+    to_be_sort = [4, 2, 7, 8, 9, 1, 2]
+    assert merge_sort(to_be_sort) == sorted(to_be_sort)
+
+
+def test_merge_words():
+    to_be_sort = ["Nie", "wolno", "zapominać", "o", "znaku", "równości"]
+    assert merge_sort(to_be_sort) == sorted(to_be_sort)
+
+
+def test_merge_random_100():
+    to_be_sort = generate_random_list(100)
+    assert merge_sort(to_be_sort) == sorted(to_be_sort)
+
+
+def test_merge_random_500():
+    to_be_sort = generate_random_list(500)
+    assert merge_sort(to_be_sort) == sorted(to_be_sort)
