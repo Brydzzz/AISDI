@@ -1,4 +1,4 @@
-def sorted_quicksort(sorted_arr):
+def quick_sort(sorted_arr):
     """
     This function makes sure that sorting doesn't mutate
     the original sorted_arr and returns a new one in a way that doesn't
@@ -8,11 +8,11 @@ def sorted_quicksort(sorted_arr):
     sorted_arr_copy = [0] * (length)
     for i in range(length):
         sorted_arr_copy[i] = sorted_arr[i]
-    quicksort(sorted_arr_copy, 0, length - 1)
+    quicksort_main(sorted_arr_copy, 0, length - 1)
     return sorted_arr_copy
 
 
-def quicksort(sorted_arr, p, r):
+def quicksort_main(sorted_arr, p, r):
     """
     recurisve quicksort algorith:
     arguments:
@@ -22,8 +22,8 @@ def quicksort(sorted_arr, p, r):
     """
     if p < r:
         q = partition(sorted_arr, p, r)
-        quicksort(sorted_arr, p, q - 1)
-        quicksort(sorted_arr, q + 1, r)
+        quicksort_main(sorted_arr, p, q - 1)
+        quicksort_main(sorted_arr, q + 1, r)
 
 
 def partition(sorted_arr, p, r):

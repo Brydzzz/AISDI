@@ -1,27 +1,27 @@
-def sorted_selection(sorted_arr):
-    length = len(sorted_arr)
-    sorted_arr_copy = [0] * length
+def sorted_selection(arr):
+    length = len(arr)
+    arr_copy = [0] * length
     for i in range(length):
-        sorted_arr_copy[i] = sorted_arr[i]
-    return selection_sort(sorted_arr_copy)
+        arr_copy[i] = arr[i]
+    return selection_sort(arr_copy)
 
 
-def selection_sort(sorted_arr):
+def selection_sort(arr):
     """
     selection sort algorithm which doesn't mutate
     the input
     arguments:
-    sorted_arr - what we want to sort
+    arr - what we want to sort
     """
-    i = 0
-    length = len(sorted_arr)
-    for _ in range(length):
-        smallest = sorted_arr[i]
-        s_index = i
+    length = len(arr)
+    arr_copy = [0] * length
+    for i in range(length):
+        arr_copy[i] = arr[i]
+    length = len(arr_copy)
+    for i in range(length):
+        min_index = i
         for n in range(i, length):
-            if sorted_arr[n] < smallest:
-                smallest = sorted_arr[n]
-                s_index = n
-        sorted_arr[i], sorted_arr[s_index] = sorted_arr[s_index], sorted_arr[i]
-        i += 1
-    return sorted_arr
+            if arr_copy[n] < arr_copy[min_index]:
+                min_index = n
+        arr_copy[i], arr_copy[min_index] = arr_copy[min_index], arr_copy[i]
+    return arr_copy
