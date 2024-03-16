@@ -1,10 +1,11 @@
 from time import process_time
 from matplotlib import pyplot as plt
 import gc
+
 from bubblesort import bubble_sort
+from selectionsort import sorted_selection
 from mergesort import merge_sort
 from quicksort import quick_sort
-from selectionsort import sorted_selection
 
 
 def load_words(file):
@@ -28,10 +29,10 @@ def get_plot_point(word_list, size, function):
     return size, t2 - t1
 
 
-def get_subplot_data(word_list, function, step):
+def get_subplot_data(word_list, function, step, max_words):
     algorithm_data = []
     print(f"Started gathering data with {function}")
-    for i in range(1000, 10001, step):
+    for i in range(1000, max_words, step):
         point = get_plot_point(word_list, i, function)
         algorithm_data.append(point)
     print(f"Finished gathering data with {function}")
@@ -84,10 +85,18 @@ def generate_plot_fast_sorts(merge_data, quick_data):
 
 if __name__ == "__main__":
     pan_t_words = load_words("pan_tadeusz.txt")
-    merge_data = get_subplot_data(pan_t_words, merge_sort, 1000)
-    quick_data = get_subplot_data(pan_t_words, quick_sort, 1000)
-    bubble_data = get_subplot_data(pan_t_words, bubble_sort, 1000)
-    selection_data = get_subplot_data(pan_t_words, sorted_selection, 1000)
+    merge_data = get_subplot_data(pan_t_words, merge_sort, 1000, 10001)
+    quick_data = get_subplot_data(pan_t_words, quick_sort, 1000, 10001)
+    bubble_data = get_subplot_data(pan_t_words, bubble_sort, 1000, 10001)
+    selection_data = get_subplot_data(
+        pan_t_words, sorted_selection, 1000, 10001
+    )
+    merge_data_bigger_size = get_subplot_data(
+        pan_t_words, merge_sort, 2000, 40000
+    )
+    quick_data_bigger_size = get_subplot_data(
+        pan_t_words, quick_sort, 2000, 40000
+    )
     generate_plot_all(merge_data, quick_data, bubble_data, selection_data)
-    generate_plot_fast_sorts(merge_data, quick_data)
     generate_plot_slow_sorts(bubble_data, selection_data)
+    generate_plot_fast_sorts(merge_data_bigger_size, quick_data_bigger_size)
