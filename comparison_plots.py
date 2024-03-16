@@ -1,6 +1,6 @@
 from time import process_time
 from matplotlib import pyplot as plt
-
+import gc
 from bubblesort import bubble_sort
 from mergesort import merge_sort
 from quicksort import quick_sort
@@ -17,9 +17,14 @@ def load_words(file):
 
 
 def get_plot_point(word_list, size, function):
+    sliced_list = word_list[:size]
+    gc_old = gc.isenabled()
+    gc.disable()
     t1 = process_time()
-    function(word_list[:size])
+    function(sliced_list)
     t2 = process_time()
+    if gc_old:
+        gc.enable()
     return size, t2 - t1
 
 
