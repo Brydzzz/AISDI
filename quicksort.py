@@ -1,42 +1,42 @@
-def quick_sort(sorted_arr):
+def quick_sort(arr):
     """
     This function makes sure that sorting doesn't mutate
-    the original sorted_arr and returns a new one in a way that doesn't
+    the original arr and returns a new one in a way that doesn't
     mess with the algorithm itself
     """
-    length = len(sorted_arr)
-    sorted_arr_copy = [0] * (length)
+    length = len(arr)
+    arr_copy = [0] * (length)
     for i in range(length):
-        sorted_arr_copy[i] = sorted_arr[i]
-    quicksort_main(sorted_arr_copy, 0, length - 1)
-    return sorted_arr_copy
+        arr_copy[i] = arr[i]
+    quicksort_main(arr_copy, 0, length - 1)
+    return arr_copy
 
 
-def quicksort_main(sorted_arr, p, r):
+def quicksort_main(arr, p, r):
     """
-    recurisve quicksort algorith:
+    recursive quicksort algorith:
     arguments:
-    sorted_arr - dynamically mutated list
+    arr - dynamically mutated list
     p - starting index
     r - ending index
     """
     if p < r:
-        q = partition(sorted_arr, p, r)
-        quicksort_main(sorted_arr, p, q - 1)
-        quicksort_main(sorted_arr, q + 1, r)
+        q = partition(arr, p, r)
+        quicksort_main(arr, p, q - 1)
+        quicksort_main(arr, q + 1, r)
 
 
-def partition(sorted_arr, p, r):
+def partition(arr, p, r):
     """
     partition function, which puts smaller than pivot
     values on the left side of it, and bigger than pivot
     values on the right side
     """
-    pv = sorted_arr[r]
+    pv = arr[r]
     j = p
     for i in range(p, r):
-        if sorted_arr[i] <= pv:
-            sorted_arr[j], sorted_arr[i] = sorted_arr[i], sorted_arr[j]
+        if arr[i] <= pv:
+            arr[j], arr[i] = arr[i], arr[j]
             j += 1
-    sorted_arr[j], sorted_arr[r] = sorted_arr[r], sorted_arr[j]
+    arr[j], arr[r] = arr[r], arr[j]
     return j
