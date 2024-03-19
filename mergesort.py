@@ -1,4 +1,9 @@
 def merge_sort(arr):
+    """
+    This function makes sure that sorting doesn't mutate
+    the original arr and returns a new one in a way that doesn't
+    mess with the algorithm itself
+    """
     length = len(arr)
     arr_copy = [0] * (length)
     for i in range(length):
@@ -8,6 +13,9 @@ def merge_sort(arr):
 
 
 def merge(arr, p, q, r):
+    """
+    merges two sorted lists
+    """
     n1 = q - p + 1
     n2 = r - q
     L = [0] * (n1)
@@ -20,7 +28,7 @@ def merge(arr, p, q, r):
     j = 0
     k = p
     while i < n1 and j < n2:
-        if L[i] <= R[j]:
+        if L[i] < R[j]:
             arr[k] = L[i]
             i += 1
         else:
@@ -38,6 +46,13 @@ def merge(arr, p, q, r):
 
 
 def mergesort_main(arr, p, r):
+    """
+    recursive mergesort algorithm:
+    arguments:
+    arr - dynamically mutated list
+    p - starting index
+    r - ending index
+    """
     if p < r:
         q = (p + r) // 2
         mergesort_main(arr, p, q)

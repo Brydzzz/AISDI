@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 import gc
 
 from bubblesort import bubble_sort
-from selectionsort import sorted_selection
+from selectionsort import selection_sort
 from mergesort import merge_sort
 from quicksort import quick_sort
 
@@ -89,7 +89,7 @@ if __name__ == "__main__":
     quick_data = get_subplot_data(pan_t_words, quick_sort, 1000, 10001)
     bubble_data = get_subplot_data(pan_t_words, bubble_sort, 1000, 10001)
     selection_data = get_subplot_data(
-        pan_t_words, sorted_selection, 1000, 10001
+        pan_t_words, selection_sort, 1000, 10001
     )
     merge_data_bigger_size = get_subplot_data(
         pan_t_words, merge_sort, 2000, 40000

@@ -1,9 +1,15 @@
 def bubble_sort(arr):
+    """
+    selection sort algorithm which doesn't mutate
+    the input
+    arguments:
+    arr - array that we want to sort
+    """
     n = len(arr)
     swapped = False
     result = [0] * n
-    for i, element in enumerate(arr):
-        result[i] = element
+    for i in range(n):
+        result[i] = arr[i]
 
     for i in range(n - 1):
         for j in range(0, n - i - 1):

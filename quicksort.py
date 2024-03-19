@@ -14,7 +14,7 @@ def quick_sort(arr):
 
 def quicksort_main(arr, p, r):
     """
-    recursive quicksort algorith:
+    recursive quicksort algorithm:
     arguments:
     arr - dynamically mutated list
     p - starting index
@@ -35,7 +35,7 @@ def partition(arr, p, r):
     pv = arr[r]
     j = p
     for i in range(p, r):
-        if arr[i] <= pv:
+        if arr[i] < pv:
             arr[j], arr[i] = arr[i], arr[j]
             j += 1
     arr[j], arr[r] = arr[r], arr[j]
