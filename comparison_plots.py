@@ -1,6 +1,7 @@
 from time import process_time
 from matplotlib import pyplot as plt
 import gc
+import sys
 
 from bubblesort import bubble_sort
 from selectionsort import selection_sort
@@ -84,7 +85,9 @@ def generate_plot_fast_sorts(merge_data, quick_data):
 
 
 if __name__ == "__main__":
+    sys.setrecursionlimit(20000)
     pan_t_words = load_words("pan_tadeusz.txt")
+    pan_t_words_len = len(pan_t_words)
     merge_data = get_subplot_data(pan_t_words, merge_sort, 1000, 10001)
     quick_data = get_subplot_data(pan_t_words, quick_sort, 1000, 10001)
     bubble_data = get_subplot_data(pan_t_words, bubble_sort, 1000, 10001)
@@ -92,10 +95,10 @@ if __name__ == "__main__":
         pan_t_words, selection_sort, 1000, 10001
     )
     merge_data_bigger_size = get_subplot_data(
-        pan_t_words, merge_sort, 2000, 40000
+        pan_t_words, merge_sort, 3000, pan_t_words_len
     )
     quick_data_bigger_size = get_subplot_data(
-        pan_t_words, quick_sort, 2000, 40000
+        pan_t_words, quick_sort, 3000, pan_t_words_len
     )
     generate_plot_all(merge_data, quick_data, bubble_data, selection_data)
     generate_plot_slow_sorts(bubble_data, selection_data)
