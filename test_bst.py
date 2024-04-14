@@ -122,3 +122,22 @@ def test_delete_bst_two_sons2():
     )
     bs.delete(24)
     assert check_tree(node5) is True
+
+
+def test_delete_bst_two_sons3():
+    node5 = BSTNode(5)
+    bs = BSTree(
+        node5,
+        [1, 20, 15, 25, 24, 23, 22, 23.5, 24.5, 24.25, 24.1, 24.6, 24.15],
+    )
+    bs.delete(24)
+    assert check_tree(node5) is True
+
+
+def test_display():
+    node5 = BSTNode(5)
+    bs = BSTree(
+        node5,
+        [1, 20, 15, 25, 24, 23, 22, 23.5, 24.5, 24.25, 24.1, 24.6, 24.15],
+    )
+    bs.display()

@@ -29,7 +29,7 @@ class BSTree:
         else:
             y.right = z
 
-    def search(self, key) -> BSTNode:
+    def find_closest(self, key) -> BSTNode:
         x = self.root
         y = None
         while x is not None and key != x.key:
@@ -40,10 +40,22 @@ class BSTree:
                 x = x.right
         return x, y
 
+    def search(self, key) -> BSTNode:
+        return self.find_closest(key)[0]
+
+    def min_in_right(self, node) -> BSTNode:
+        p = None
+        temp = None
+        temp = node.right
+        while temp.left is not None:
+            p = temp
+            temp = temp.left
+        return temp, p
+
     def delete(self, key) -> None:
         if self.root is None:
             return self.root
-        x, y = self.search(key)
+        x, y = self.find_closest(key)
         if not x:
             return x
         if not x.left or not x.right:
@@ -61,12 +73,7 @@ class BSTree:
 
             x = None
         else:
-            p = None
-            temp = None
-            temp = x.right
-            while temp.left is not None:
-                p = temp
-                temp = temp.left
+            temp, p = self.min_in_right(x)
             if p is not None:
                 p.left = temp.right
             else:
@@ -75,5 +82,22 @@ class BSTree:
             temp = None
         return self.root
 
-    def display(self):
-        pass
+    def display(
+        self,
+        right=False,
+        node=None,
+        indent=0,
+    ):
+        if not node:
+            node = self.root
+            print(node.key)
+        elif right:
+            print(f'{indent * " "}R:{node.key}')
+        else:
+            print(f'{indent * " "}L:{node.key}')
+        indent += 4
+        if node.left:
+            self.display(False, node.left, indent)
+        if node.right:
+            self.display(True, node.right, indent)
+        return
