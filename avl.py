@@ -57,6 +57,7 @@ class AVLTree:
                 root.parent.right = pivot
             else:
                 root.parent.left = pivot
+        pivot.parent = root.parent
         root.parent = pivot
         root.right = pivot.left
         pivot.left = root
@@ -70,6 +71,7 @@ class AVLTree:
                 root.parent.right = pivot
             else:
                 root.parent.left = pivot
+        pivot.parent = root.parent
         root.parent = pivot
         root.left = pivot.right
         pivot.right = root

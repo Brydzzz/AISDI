@@ -64,5 +64,7 @@ def test_avl_tree_display2():
     av.insert(25)
     av.insert(24)
     av.insert(23)
+    av.insert(60)
+    av.insert(40)
     assert check_tree(node3) is True
     av.display()
