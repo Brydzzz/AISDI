@@ -40,7 +40,7 @@ class BSTree:
                 x = x.right
         return x, y
 
-    def search(self, key) -> tuple[BSTNode, BSTNode]:
+    def search(self, key) -> BSTNode:
         return self.find_closest(key)[0]
 
     def min_in_right(self, node) -> BSTNode:
