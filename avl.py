@@ -52,6 +52,11 @@ class AVLTree:
         if not root.parent:
             self.root = pivot
             pivot.parent = None
+        else:
+            if root.parent.right == root:
+                root.parent.right = pivot
+            else:
+                root.parent.left = pivot
         root.parent = pivot
         root.right = pivot.right
         pivot.left = root
@@ -60,6 +65,11 @@ class AVLTree:
         if not root.parent:
             self.root = pivot
             pivot.parent = None
+        else:
+            if root.parent.right == root:
+                root.parent.right = pivot
+            else:
+                root.parent.left = pivot
         root.parent = pivot
         root.left = pivot.right
         pivot.right = root
@@ -154,3 +164,32 @@ class AVLTree:
                     older = old.right
                     self.left_rotate(old, older)
                     self.right_rotate(z, older)
+
+    def search(self, key):
+        x = self.root
+        while x is not None and key != x.key:
+            if key < x.key:
+                x = x.left
+            else:
+                x = x.right
+        return x
+
+    def display(
+        self,
+        right=False,
+        node=None,
+        indent=0,
+    ):
+        if not node:
+            node = self.root
+            print(f"{node.key}{node.balance_factor}")
+        elif right:
+            print(f'{indent * " "}R:{node.key} bf:{node.balance_factor}')
+        else:
+            print(f'{indent * " "}L:{node.key} bf:{node.balance_factor}')
+        indent += 4
+        if node.left:
+            self.display(False, node.left, indent)
+        if node.right:
+            self.display(True, node.right, indent)
+        return
