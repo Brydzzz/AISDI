@@ -19,6 +19,12 @@ def test_insert_rotate_right_left():
     assert av.root.key == 8
 
 
+def test_insert_rotate_left_right():
+    node = AVLNode(7)
+    av = AVLTree(node, [5, 6])
+    assert av.root.key == 6
+
+
 # def test_balance_factor2():
 #     node3 = AVLNode(10)
 #     av = AVLTree(node3, [5, 15, 14, 13, 13.5])

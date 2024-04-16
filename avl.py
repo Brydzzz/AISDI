@@ -33,17 +33,52 @@ class AVLTree:
         z.parent = y
         return z
 
-    def left_rotate(self, currentNode):
-        if currentNode.right_child is not None:
-            right = currentNode.right_child
-            currentNode.right_child = right.left_child
-            right.left_child = currentNode
+    def left_rotate(self, root, pivot):
+        # right = currentNode.right
+        # z = right.left
+        # currentNode.right = z
+        # if z is not None:
+        #     z.parent = currentNode
+        # if right:
+        #     right.left = currentNode
+        # if currentNode.parent is None:
+        #     self.root = right
+        # currentNode.parent = right
+        # # right = currentNode.right
+        # # if currentNode.parent == None:
+        # #     self.root = right
+        # # currentNode.right = right.left
+        # # right.left = currentNode
+        if not root.parent:
+            self.root = pivot
+            pivot.parent = None
+        root.parent = pivot
+        root.right = pivot.right
+        pivot.left = root
 
-    def right_rotate(self, currentNode):
-        if currentNode.left_child is not None:
-            left = currentNode.left_child
-            currentNode.left_child = left.right_child
-            left.right_child = currentNode
+    def right_rotate(self, root, pivot):
+        if not root.parent:
+            self.root = pivot
+            pivot.parent = None
+        root.parent = pivot
+        root.left = pivot.right
+        pivot.right = root
+
+        # left = currentNode.left
+        # if currentNode.parent == None:
+        #     self.root = left
+        # currentNode.left = left.right
+        # left.right = currentNode
+        # left = currentNode.left
+        # z = currentNode.right
+        # currentNode.left = z
+        # if z is not None:
+        #     z.parent = currentNode
+        # if left:
+        #     left.right = currentNode
+        # if currentNode.parent is None:
+        #     self.root = left
+        # currentNode.parent = left
 
     def insert(self, key):
         z = self.add_node(key)
@@ -92,18 +127,19 @@ class AVLTree:
                         z.balance_factor = 1
                         old.balance_factor = 0
                     old.left.balance_factor = 0
-                    self.right_rotate(old.left)
-                    self.left_rotate(old.left)
+                    older = old.left
+                    self.right_rotate(old, older)
+                    self.left_rotate(z, older)
                 else:  # RR
                     old.balance_factor = 0
                     z.balance_factor = 0
-                    self.left_rotate(old)
+                    self.left_rotate(z, old)
         if z.balance_factor == 2:
             if z.left:
                 if z.left.balance_factor == 1:  # LL
                     old.balance_factor = 0
                     z.balance_factor = 0
-                    self.right_rotate(old)
+                    self.right_rotate(z, old)
                 else:  # LR
                     if old.right.balance_factor == 0:
                         z.balance_factor = 0
@@ -115,5 +151,6 @@ class AVLTree:
                         z.balance_Factor = 0
                         old.balance_factor = 1
                     old.right.balance_factor = 0
-                    self.left_rotate(old.right)
-                    self.right_rotate(old.right)
+                    older = old.right
+                    self.left_rotate(old, older)
+                    self.right_rotate(z, older)
