@@ -16,23 +16,23 @@ class BSTree:
         x = self.root
         y = None
         z = BSTNode(key)
-        while x is not None:
+        while x:
             y = x
             if z.key < x.key:
                 x = x.left
             else:
                 x = x.right
-        if y is None:
+        if not y:
             self.root = z
         elif z.key < y.key:
             y.left = z
         else:
             y.right = z
 
-    def find_closest(self, key) -> BSTNode:
+    def find_closest(self, key) -> tuple[BSTNode, BSTNode]:
         x = self.root
         y = None
-        while x is not None and key != x.key:
+        while x and key != x.key:
             y = x
             if key < x.key:
                 x = x.left
@@ -40,14 +40,14 @@ class BSTree:
                 x = x.right
         return x, y
 
-    def search(self, key) -> BSTNode:
+    def search(self, key) -> tuple[BSTNode, BSTNode]:
         return self.find_closest(key)[0]
 
     def min_in_right(self, node) -> BSTNode:
         p = None
         temp = None
         temp = node.right
-        while temp.left is not None:
+        while temp.left:
             p = temp
             temp = temp.left
         return temp, p
@@ -60,11 +60,11 @@ class BSTree:
             return x
         if not x.left or not x.right:
             new_x = None
-            if x.left is None:
+            if not x.left:
                 new_x = x.right
             else:
                 new_x = x.left
-            if y is None:
+            if not y:
                 return new_x
             if x == y.left:
                 y.left = new_x
@@ -74,7 +74,7 @@ class BSTree:
             x = None
         else:
             temp, p = self.min_in_right(x)
-            if p is not None:
+            if p:
                 p.left = temp.right
             else:
                 x.right = temp.right
@@ -90,7 +90,7 @@ class BSTree:
     ):
         if not node:
             node = self.root
-            print(node.key)
+            print(f'\nRoot:{node.key}')
         elif right:
             print(f'{indent * " "}R:{node.key}')
         else:
