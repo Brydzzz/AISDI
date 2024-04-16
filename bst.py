@@ -90,7 +90,7 @@ class BSTree:
     ):
         if not node:
             node = self.root
-            print(f'\nRoot:{node.key}')
+            print(f"\nRoot:{node.key}")
         elif right:
             print(f'{indent * " "}R:{node.key}')
         else:
