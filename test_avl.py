@@ -1,13 +1,13 @@
 from avl import AVLNode, AVLTree
 
 
-def test_insert_rotate_right_simple():
+def test_insert_rotate_left_simple():
     node3 = AVLNode(3)
     av = AVLTree(node3, [4, 5])
     assert av.root.key == 4
 
 
-def test_insert_rotate_left_simple():
+def test_insert_rotate_right_simple():
     node3 = AVLNode(3)
     av = AVLTree(node3, [2, 1])
     assert av.root.key == 2

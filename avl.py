@@ -33,23 +33,17 @@ class AVLTree:
         z.parent = y
         return z
 
-    def left_rotate(self, node):
-        right = node.right
-        if node == self.root:
-            self.root = right
-        node.right = right.left
-        right.left = node
-        right.parent = node.parent
-        node.parent = right
+    def left_rotate(self, currentNode):
+        if currentNode.right_child is not None:
+            right = currentNode.right_child
+            currentNode.right_child = right.left_child
+            right.left_child = currentNode
 
-    def right_rotate(self, node):
-        left = node.left
-        if node == self.root:
-            self.root = left
-        node.left = left.right
-        left.right = node
-        left.parent = node.parent
-        node.parent = left
+    def right_rotate(self, currentNode):
+        if currentNode.left_child is not None:
+            left = currentNode.left_child
+            currentNode.left_child = left.right_child
+            left.right_child = currentNode
 
     def insert(self, key):
         z = self.add_node(key)
@@ -98,18 +92,18 @@ class AVLTree:
                         z.balance_factor = 1
                         old.balance_factor = 0
                     old.left.balance_factor = 0
-                    self.right_rotate(z)
-                    self.left_rotate(z)
+                    self.right_rotate(old.left)
+                    self.left_rotate(old.left)
                 else:  # RR
                     old.balance_factor = 0
                     z.balance_factor = 0
-                    self.left_rotate(z)
+                    self.left_rotate(old)
         if z.balance_factor == 2:
             if z.left:
                 if z.left.balance_factor == 1:  # LL
                     old.balance_factor = 0
                     z.balance_factor = 0
-                    self.right_rotate(z)
+                    self.right_rotate(old)
                 else:  # LR
                     if old.right.balance_factor == 0:
                         z.balance_factor = 0
@@ -121,5 +115,5 @@ class AVLTree:
                         z.balance_Factor = 0
                         old.balance_factor = 1
                     old.right.balance_factor = 0
-                    self.left_rotate(z)
-                    self.right_rotate(z)
+                    self.left_rotate(old.right)
+                    self.right_rotate(old.right)
