@@ -57,9 +57,12 @@ def test_avl_tree_display():
 
 def test_avl_tree_display2():
     node3 = AVLNode(5)
-    av = AVLTree(
-        node3,
-        [1, 20, 15, 25, 24, 23, 22, 23.5, 24.5, 24.25, 24.1, 24.6, 24.15],
-    )
+    av = AVLTree(node3)
+    av.insert(1)
+    av.insert(20)
+    av.insert(15)
+    av.insert(25)
+    av.insert(24)
+    av.insert(23)
     assert check_tree(node3) is True
     av.display()

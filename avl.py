@@ -58,7 +58,7 @@ class AVLTree:
             else:
                 root.parent.left = pivot
         root.parent = pivot
-        root.right = pivot.right
+        root.right = pivot.left
         pivot.left = root
 
     def right_rotate(self, root, pivot):
