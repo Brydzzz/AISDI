@@ -76,3 +76,9 @@ def test_avl_large_display():
     list = generate_random_list(100)
     av = AVLTree(node, list)
     av.display()
+
+
+def test_avl_root():
+    av = AVLTree()
+    av.insert(5)
+    assert av.root.key == 5

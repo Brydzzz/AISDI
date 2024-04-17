@@ -93,6 +93,10 @@ class AVLTree:
         # currentNode.parent = left
 
     def insert(self, key):
+        if not self.root:
+            z = AVLNode(key)
+            self.root = z
+            return
         z = self.add_node(key)
         old = z
         z = z.parent
