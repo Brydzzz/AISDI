@@ -20,50 +20,30 @@ def check_tree(node):
 def test_insert_rotate_left_simple():
     node3 = AVLNode(3)
     av = AVLTree(node3, [4, 5])
-    # av = AVLTree()
-    # av.insert(3)
-    # av.insert(4)
-    # av.insert(5)
     assert av.root.key == 4
 
 
 def test_insert_rotate_right_simple():
     node3 = AVLNode(3)
     av = AVLTree(node3, [2, 1])
-    # av = AVLTree()
-    # av.insert(3)
-    # av.insert(2)
-    # av.insert(1)
     assert av.root.key == 2
 
 
 def test_insert_rotate_right_left():
     node = AVLNode(7)
     av = AVLTree(node, [10, 8])
-    # av = AVLTree()
-    # av.insert(7)
-    # av.insert(10)
-    # av.insert(8)
     assert av.root.key == 8
 
 
 def test_insert_rotate_left_right():
     node = AVLNode(7)
     av = AVLTree(node, [5, 6])
-    # av = AVLTree()
-    # av.insert(7)
-    # av.insert(5)
-    # av.insert(6)
     assert av.root.key == 6
 
 
 def test_avl_tree_search():
     node3 = AVLNode(10)
     av = AVLTree(node3, [5, 15])
-    # av = AVLTree()
-    # av.insert(10)
-    # av.insert(5)
-    # av.insert(15)
     av.insert(14)
     av.insert(13)
     assert check_tree(node3) is True
@@ -73,12 +53,6 @@ def test_avl_tree_search():
 def test_avl_tree_display():
     node3 = AVLNode(10)
     av = AVLTree(node3, [5, 15, 14, 13])
-    # av = AVLTree()
-    # av.insert(10)
-    # av.insert(5)
-    # av.insert(15)
-    # av.insert(14)
-    # av.insert(13)
     assert check_tree(node3) is True
     av.display()
 
@@ -86,8 +60,6 @@ def test_avl_tree_display():
 def test_avl_tree_display2():
     node3 = AVLNode(5)
     av = AVLTree(node3)
-    # av = AVLTree()
-    # av.insert(5)
     av.insert(1)
     av.insert(20)
     av.insert(15)
@@ -102,7 +74,7 @@ def test_avl_tree_display2():
 
 def test_avl_large_display():
     node = AVLNode(50)
-    list = generate_random_list(100)
+    list = generate_random_list(1000)
     av = AVLTree(node, list)
     av.display()
 

@@ -33,16 +33,51 @@ class AVLTree:
     def _rebalance(self, node):
         if node.bf > 0:  # node has more on the right side
             if node.right.bf < 0:  # node.right has more on the left side
+                pivot = node.right
+                sec = pivot.left
                 self.rightRotate(node.right)
                 self.leftRotate(node)
+                if sec.bf == -1:
+                    node.bf = 0
+                    pivot.bf = 1
+                    sec.bf = 0
+                elif sec.bf == 1:
+                    node.bf = -1
+                    pivot.bf = 0
+                    sec.bf = 0
+                else:
+                    node.bf = 0
+                    pivot.bf = 0
+                    sec.bf = 0
             else:
+                pivot = node.right
                 self.leftRotate(node)
+                pivot.bf = 0
+                node.bf = 1
+
         elif node.bf < 0:  # node has more on the left side
             if node.left.bf > 0:  # node.left has more on the right side
+                pivot = node.left
+                sec = pivot.right
                 self.leftRotate(node.left)
                 self.rightRotate(node)
+                if sec.bf == -1:
+                    node.bf = 1
+                    pivot.bf = 0
+                    sec.bf = 0
+                elif sec.bf == -1:
+                    node.bf = 0
+                    pivot.bf = -1
+                    sec.bf = 0
+                else:
+                    node.bf = 0
+                    pivot.bf = 0
+                    sec.bf = 0
             else:
+                pivot = node.left
                 self.rightRotate(node)
+                node.bf = 0
+                pivot.bf = 0
 
     def search(self, key) -> AVLNode:
         x = self.root
@@ -70,9 +105,6 @@ class AVLTree:
         y.left = x
         x.parent = y
 
-        x.bf = x.bf - 1 - max(0, y.bf)
-        y.bf = y.bf - 1 + min(0, x.bf)
-
     # rotate right at node x
     def rightRotate(self, x):
         y = x.left
@@ -90,9 +122,6 @@ class AVLTree:
 
         y.right = x
         x.parent = y
-
-        x.bf = x.bf + 1 - min(0, y.bf)
-        y.bf = y.bf + 1 + max(0, x.bf)
 
     def insert(self, key):
         node = AVLNode(key)
