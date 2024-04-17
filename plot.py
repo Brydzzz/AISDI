@@ -45,6 +45,12 @@ def create_bst_insert_plot(data: list[tuple[int, int]]) -> None:
     plt.clf()
 
 
+def create_bst_insert_subplot(data: list[tuple[int, int]]) -> None:
+    size_values = [point[0] for point in data]
+    time_values = [point[1] for point in data]
+    plt.plot(size_values, time_values, marker="o", linestyle="-")
+
+
 def gather_bst_search_data(
     keys_in_bst: list[int], step: int, key_to_search: int
 ) -> list[tuple[int, int]]:
@@ -70,11 +76,19 @@ def create_bst_search_plot(data: list[tuple[int, int]]) -> None:
     plt.plot(size_values, time_values, marker="o", linestyle="-")
     plt.title("BSTree Search")
     plt.ylabel("Time [s]")
-    plt.ylim(top=10 ** (-4))
+    plt.ylim(top=10 ** (-3))
+    plt.ticklabel_format(axis="y", style="sci", scilimits=(0, 0))
+    plt.xlim(left=0)
     plt.xlabel("Number of n elements")
     plt.grid()
     plt.savefig("bst_search_plot.png")
     plt.clf()
+
+
+def create_bst_search_subplot(data: list[tuple[int, int]]) -> None:
+    size_values = [point[0] for point in data]
+    time_values = [point[1] for point in data]
+    plt.plot(size_values, time_values, marker="o", linestyle="-")
 
 
 def gather_bst_delete_data(
@@ -143,6 +157,12 @@ def create_avl_insert_plot(data: list[tuple[int, int]]) -> None:
     plt.clf()
 
 
+def create_avl_insert_subplot(data: list[tuple[int, int]]) -> None:
+    size_values = [point[0] for point in data]
+    time_values = [point[1] for point in data]
+    plt.plot(size_values, time_values, marker="o", linestyle="-")
+
+
 def gather_avl_search_data(
     keys_in_bst: list[int], step: int, key_to_search: int
 ) -> list[tuple[int, int]]:
@@ -177,21 +197,68 @@ def create_avl_search_plot(data: list[tuple[int, int]]) -> None:
     plt.clf()
 
 
+def create_avl_search_subplot(data: list[tuple[int, int]]) -> None:
+    size_values = [point[0] for point in data]
+    time_values = [point[1] for point in data]
+    plt.plot(size_values, time_values, marker="o", linestyle="-")
+
+
+def create_insert_plot(
+    bst_data: list[tuple[int, int]],
+    avl_data: list[tuple[int, int]],
+    title: str,
+    filename: str,
+) -> None:
+    create_bst_insert_subplot(bst_data)
+    create_avl_insert_subplot(avl_data)
+    plt.title(title)
+    plt.legend(["BST", "AVL"])
+    plt.ylabel("Time [s]")
+    plt.xlabel("Number of n elements")
+    # plt.ylim(top=10 ** (-4))
+    plt.ylim(bottom=0)
+    plt.xlim(left=0)
+    # plt.ticklabel_format(axis="y", style="sci", scilimits=(0, 0))
+    plt.grid()
+    plt.savefig(filename)
+    plt.clf()
+
+
+def create_search_plot(
+    bst_data: list[tuple[int, int]], avl_data: list[tuple[int, int]]
+) -> None:
+    create_bst_search_subplot(bst_data)
+    create_avl_search_subplot(avl_data)
+    plt.title("Search Comparison")
+    plt.legend(["BST", "AVL"])
+    plt.ylabel("Time [s]")
+    plt.xlabel("Number of n elements")
+    plt.ylim(top=10 ** (-4))
+    plt.ylim(bottom=0)
+    plt.xlim(left=0)
+    plt.ticklabel_format(axis="y", style="sci", scilimits=(0, 0))
+    plt.grid()
+    plt.savefig("search_plot.png")
+    plt.clf()
+
+
 def main():
-    keys = generate_random_list(1000000)
+    keys = generate_random_list(40001)
     key_to_search = choice(keys)
     key_to_delete = choice(keys)
+    keys_sorted = sorted(keys[:20001])
 
     # gather BST insert data
     print("Started gathering data for BSTree insert()")
-    bst_insert_data = gather_bst_insert_data(keys, 1000)
+    bst_insert_random_data = gather_bst_insert_data(keys, 1000)
+    bst_insert_sorted_data = gather_bst_insert_data(keys_sorted, 5000)
     print("Finished gathering data for BSTree insert()")
     # plot BST insert data
-    create_bst_insert_plot(bst_insert_data)
+    create_bst_insert_plot(bst_insert_random_data)
 
     # gather BST search data
     print("Started gathering data for BSTree search()")
-    bst_search_data = gather_bst_search_data(keys, 5000, key_to_search)
+    bst_search_data = gather_bst_search_data(keys, 1000, key_to_search)
     print("Finished gathering data for BSTree search()")
     # plot BST search data
     create_bst_search_plot(bst_search_data)
@@ -205,17 +272,37 @@ def main():
 
     # gather AVLTree insert data
     print("Started gathering data for AVLTree insert()")
-    avl_insert_data = gather_avl_insert_data(keys, 20000)
+    avl_insert_random_data = gather_avl_insert_data(keys, 1000)
+    avl_insert_sorted_data = gather_avl_insert_data(keys_sorted, 5000)
     print("Finished gathering data for AVLTree insert()")
     # plot AVLTree insert data
-    create_avl_insert_plot(avl_insert_data)
+    create_avl_insert_plot(avl_insert_random_data)
 
     # gather AVLTree search data
     print("Started gathering data for AVLTree search()")
-    avl_search_data = gather_avl_search_data(keys, 2000, key_to_search)
+    avl_search_data = gather_avl_search_data(keys, 1000, key_to_search)
     print("Finished gathering data for AVLTree search()")
     # plot AVLTree search data
     create_avl_search_plot(avl_search_data)
+
+    # comparison plot for insert random
+    create_insert_plot(
+        bst_insert_random_data,
+        avl_insert_random_data,
+        title="Insert Random Data Comparison",
+        filename="insert_random.png",
+    )
+
+    # comparison plot for insert sorted
+    create_insert_plot(
+        bst_insert_sorted_data,
+        avl_insert_sorted_data,
+        title="Insert Sorted Data Comparison",
+        filename="insert_sorted.png",
+    )
+
+    # comparison plot for search
+    create_search_plot(bst_search_data, avl_search_data)
 
 
 if __name__ == "__main__":
