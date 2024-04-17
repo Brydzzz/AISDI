@@ -1,21 +1,21 @@
 class AVLNode:
     def __init__(self, key):
         self.key = key
-        self.parent = None
-        self.left = None
-        self.right = None
-        self.bf = 0
+        self.parent: AVLNode = None
+        self.left: AVLNode = None
+        self.right: AVLNode = None
+        self.bf: int = 0
 
 
 class AVLTree:
 
-    def __init__(self, root=None, keys=None):
+    def __init__(self, root: AVLNode = None, keys=None):
         self.root = root
         if keys:
             for element in keys:
                 self.insert(element)
 
-    def _updateBalanceFactor(self, node):
+    def _updateBalanceFactor(self, node: AVLNode) -> None:
         if node.bf == -2 or node.bf == 2:
             self._rebalance(node)
             return
@@ -30,7 +30,7 @@ class AVLTree:
             if node.parent.bf != 0:
                 self._updateBalanceFactor(node.parent)
 
-    def _rebalance(self, node):
+    def _rebalance(self, node: AVLNode) -> None:
         if node.bf > 0:  # node has more on the right side
             if node.right.bf < 0:  # node.right has more on the left side
                 pivot = node.right
@@ -89,7 +89,7 @@ class AVLTree:
         return x
 
     # rotate left at node x
-    def leftRotate(self, x):
+    def leftRotate(self, x: AVLNode) -> None:
         y = x.right
         x.right = y.left
         if y.left:
@@ -106,7 +106,7 @@ class AVLTree:
         x.parent = y
 
     # rotate right at node x
-    def rightRotate(self, x):
+    def rightRotate(self, x: AVLNode) -> None:
         y = x.left
         x.left = y.right
         if y.right:
@@ -123,7 +123,7 @@ class AVLTree:
         y.right = x
         x.parent = y
 
-    def insert(self, key):
+    def insert(self, key) -> None:
         node = AVLNode(key)
         y = None
         x = self.root
@@ -148,10 +148,10 @@ class AVLTree:
 
     def display(
         self,
-        right=False,
-        node=None,
+        right: bool = False,
+        node: AVLNode = None,
         indent=0,
-    ):
+    ) -> None:
         if not node:
             node = self.root
             print(f"\nroot: {node.key} bf:{node.bf}")
