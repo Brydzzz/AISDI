@@ -1,12 +1,12 @@
 class BSTNode:
     def __init__(self, key):
         self.key = key
-        self.left = None
-        self.right = None
+        self.left: BSTNode = None
+        self.right: BSTNode = None
 
 
 class BSTree:
-    def __init__(self, root=None, list=None):
+    def __init__(self, root: BSTNode = None, list=None):
         self.root = root
         if list:
             for element in list:
@@ -43,16 +43,15 @@ class BSTree:
     def search(self, key) -> BSTNode:
         return self.find_closest(key)[0]
 
-    def min_in_right(self, node) -> BSTNode:
+    def min_in_right(self, node: BSTNode) -> tuple[BSTNode, BSTNode]:
         p = None
-        temp = None
         temp = node.right
         while temp.left:
             p = temp
             temp = temp.left
         return temp, p
 
-    def delete(self, key) -> None:
+    def delete(self, key) -> BSTNode:
         if self.root is None:
             return self.root
         x, y = self.find_closest(key)
@@ -84,10 +83,10 @@ class BSTree:
 
     def display(
         self,
-        right=False,
-        node=None,
-        indent=0,
-    ):
+        right: bool = False,
+        node: BSTNode = None,
+        indent: int = 0,
+    ) -> None:
         if not node:
             node = self.root
             print(f"\nRoot:{node.key}")
