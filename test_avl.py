@@ -47,7 +47,16 @@ def test_avl_tree_search():
     av.insert(14)
     av.insert(13)
     assert check_tree(node3) is True
-    assert av.search(13)
+    assert av.search(13) is not None
+
+
+def test_avl_tree_search_no_element():
+    node3 = AVLNode(10)
+    av = AVLTree(node3, [5, 15])
+    av.insert(14)
+    av.insert(13)
+    assert check_tree(node3) is True
+    assert av.search(1) is None
 
 
 def test_avl_tree_display():

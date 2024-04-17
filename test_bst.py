@@ -70,6 +70,17 @@ def test_bst_search_simple2():
     assert bs.search(-1) == bs.root.left.left
 
 
+def test_bst_search_no_element():
+    node2 = BSTNode(2)
+    bs = BSTree(node2)
+    bs.insert(1)
+    bs.insert(3)
+    bs.insert(6)
+    bs.insert(2)
+    bs.insert(-1)
+    assert bs.search(-7) is None
+
+
 def test_delete_bst_leaf():
     node5 = BSTNode(5)
     bs = BSTree(node5)
