@@ -1,5 +1,7 @@
 from avl import AVLNode, AVLTree
 
+from plot import generate_random_list
+
 
 def check_tree(node):
     if node.left:
@@ -67,4 +69,10 @@ def test_avl_tree_display2():
     av.insert(60)
     av.insert(40)
     assert check_tree(node3) is True
+    av.display()
+
+def test_avl_large_display():
+    node = AVLNode(50)
+    list = generate_random_list(100)
+    av = AVLTree(node, list)
     av.display()

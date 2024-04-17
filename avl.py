@@ -184,7 +184,7 @@ class AVLTree:
     ):
         if not node:
             node = self.root
-            print(f"{node.key}{node.balance_factor}")
+            print(f"\nroot: {node.key} bf:{node.balance_factor}")
         elif right:
             print(f'{indent * " "}R:{node.key} bf:{node.balance_factor}')
         else:
