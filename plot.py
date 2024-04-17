@@ -13,6 +13,7 @@ def generate_random_list(size: int) -> list[int]:
     return random_list
 
 
+# MARK: BST
 def gather_bst_insert_data(
     keys_to_insert: list[int], step: int
 ) -> list[tuple[int, int]]:
@@ -128,6 +129,7 @@ def create_bst_delete_plot(data: list[tuple[int, int]]) -> None:
     plt.clf()
 
 
+# MARK: AVL
 def gather_avl_insert_data(
     keys_to_insert: list[int], step: int
 ) -> list[tuple[int, int]]:
@@ -207,6 +209,7 @@ def create_avl_search_subplot(data: list[tuple[int, int]]) -> None:
     plt.plot(size_values, time_values, marker="o", linestyle="-")
 
 
+# MARK: comparsion plots
 def create_insert_plot(
     bst_data: list[tuple[int, int]],
     avl_data: list[tuple[int, int]],
