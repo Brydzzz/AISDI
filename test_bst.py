@@ -81,6 +81,15 @@ def test_bst_search_no_element():
     assert bs.search(-7) is None
 
 
+def test_delete_root():
+    node5 = BSTNode(5)
+    bs = BSTree(node5)
+    bs.insert(3)
+    bs.delete(5)
+    assert bs.root.key == 3
+    assert bs.root.parent is None
+
+
 def test_delete_bst_leaf():
     node5 = BSTNode(5)
     bs = BSTree(node5)
