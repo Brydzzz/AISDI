@@ -1,4 +1,5 @@
 from bst import BSTree
+from avl_tree import AVLTree
 from time import process_time
 import gc
 from matplotlib import pyplot as plt
@@ -110,14 +111,80 @@ def create_bst_delete_plot(data: list[tuple[int, int]]) -> None:
     plt.clf()
 
 
+def gather_avl_insert_data(
+    keys_to_insert: list[int], step: int
+) -> list[tuple[int, int]]:
+    length = len(keys_to_insert)
+    data = []
+    for n in range(0, length, step):
+        keys = keys_to_insert[:n]
+        avl_tree = AVLTree()
+        gc_old = gc.isenabled()
+        gc.disable()
+        t1 = process_time()
+        for key in keys:
+            avl_tree.insert(key)
+        t2 = process_time()
+        if gc_old:
+            gc.enable()
+        data.append((n, t2 - t1))
+    return data
+
+
+def create_avl_insert_plot(data: list[tuple[int, int]]) -> None:
+    size_values = [point[0] for point in data]
+    time_values = [point[1] for point in data]
+    plt.plot(size_values, time_values, marker="o", linestyle="-")
+    plt.title("AVL Tree Insert")
+    plt.ylabel("Time [s]")
+    plt.xlabel("Number of n elements")
+    plt.grid()
+    plt.savefig("avl_insert_plot.png")
+    plt.clf()
+
+
+def gather_avl_search_data(
+    keys_in_bst: list[int], step: int, key_to_search: int
+) -> list[tuple[int, int]]:
+    length = len(keys_in_bst)
+    data = []
+    for n in range(0, length, step):
+        keys = keys_in_bst[:n]
+        avl_tree = AVLTree(keys=keys)
+        gc_old = gc.isenabled()
+        gc.disable()
+        t1 = process_time()
+        avl_tree.search(key_to_search)
+        t2 = process_time()
+        if gc_old:
+            gc.enable()
+        data.append((n, t2 - t1))
+    return data
+
+
+def create_avl_search_plot(data: list[tuple[int, int]]) -> None:
+    size_values = [point[0] for point in data]
+    time_values = [point[1] for point in data]
+    plt.plot(size_values, time_values, marker="o", linestyle="-")
+    plt.title("AVL Tree Search")
+    plt.ylabel("Time [s]")
+    plt.ylim(top=10 ** (-4))
+    plt.xlim(left=0)
+    plt.ticklabel_format(axis="y", style="sci", scilimits=(0, 0))
+    plt.xlabel("Number of n elements")
+    plt.grid()
+    plt.savefig("avl_search_plot.png")
+    plt.clf()
+
+
 def main():
-    keys = generate_random_list(40000)
+    keys = generate_random_list(1000000)
     key_to_search = choice(keys)
     key_to_delete = choice(keys)
 
     # gather BST insert data
     print("Started gathering data for BSTree insert()")
-    bst_insert_data = gather_bst_insert_data(keys, 10000)
+    bst_insert_data = gather_bst_insert_data(keys, 1000)
     print("Finished gathering data for BSTree insert()")
     # plot BST insert data
     create_bst_insert_plot(bst_insert_data)
@@ -135,6 +202,20 @@ def main():
     print("Finished gathering data for BSTree delete()")
     # plot BST delete data
     create_bst_delete_plot(bst_delete_data)
+
+    # gather AVLTree insert data
+    print("Started gathering data for AVLTree insert()")
+    avl_insert_data = gather_avl_insert_data(keys, 20000)
+    print("Finished gathering data for AVLTree insert()")
+    # plot AVLTree insert data
+    create_avl_insert_plot(avl_insert_data)
+
+    # gather AVLTree search data
+    print("Started gathering data for AVLTree search()")
+    avl_search_data = gather_avl_search_data(keys, 2000, key_to_search)
+    print("Finished gathering data for AVLTree search()")
+    # plot AVLTree search data
+    create_avl_search_plot(avl_search_data)
 
 
 if __name__ == "__main__":
