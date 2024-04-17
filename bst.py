@@ -38,7 +38,7 @@ class BSTree:
                 x = x.left
             else:
                 x = x.right
-        return x, y
+        return x, y  # x-node with key, y-paret of node with key
 
     def search(self, key) -> BSTNode:
         return self.find_closest(key)[0]
@@ -51,9 +51,9 @@ class BSTree:
             temp = temp.left
         return temp, p
 
-    def delete(self, key) -> BSTNode:
+    def delete(self, key):
         if self.root is None:
-            return self.root
+            return
         x, y = self.find_closest(key)
         if not x:
             return x
@@ -63,8 +63,17 @@ class BSTree:
                 new_x = x.right
             else:
                 new_x = x.left
-            if not y:
-                return new_x
+            if new_x:
+                if not y:
+                    self.root = new_x
+                    new_x.parent = None
+                    x = None
+                    return
+            else:
+                if not y:
+                    self.root = None
+                    x = None
+                    return
             if x == y.left:
                 y.left = new_x
             else:
@@ -79,7 +88,7 @@ class BSTree:
                 x.right = temp.right
             x.key = temp.key
             temp = None
-        return self.root
+        return
 
     def display(
         self,
