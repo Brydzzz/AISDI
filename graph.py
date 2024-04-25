@@ -18,6 +18,5 @@ class Graph:
 
     def add_edge(
         self, src_vertice: Vertice, target_vertice: Vertice, weight: int
-    ):
-        # TODO implement
-        pass
+    ) -> None:
+        self.adj_list[src_vertice].append((target_vertice, weight))
