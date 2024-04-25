@@ -1,9 +1,15 @@
+import sys
+
+
 class Vertice:
     def __init__(self, value) -> None:
         self.key = value
         self.parent: Vertice = None
-        self.distance: int = None
+        self.distance: int = sys.maxsize
         self.checked: bool = False
+
+    def __lt__(self, other) -> bool:
+        return self.distance < other.distance
 
     def __repr__(self) -> str:
         return f"(Key: {self.key}, Distance: {self.distance})"
