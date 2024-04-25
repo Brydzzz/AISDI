@@ -1,5 +1,6 @@
 import argparse
 from boardParser import BoardParser
+from dijkstra import dijkstra
 
 
 def main():
@@ -9,7 +10,10 @@ def main():
     filename = args.filename
     with open(filename, "r") as file:
         b = BoardParser(file)
-    print(b.board)
+    gr = b.create_graph()
+    x1, x2 = b.find_start_end()
+    dijkstra(gr, x1, x2)
+    b.print_route()
 
 
 if __name__ == "__main__":
