@@ -39,6 +39,33 @@ class BoardParser:
             return 0
         return int(vertice.key)
 
+    def find_start_end(self) -> tuple[Vertice, Vertice]:
+        found_one = False
+        first_vertice = None
+        second_vertice = None
+        for row in self.board:
+            for element in row:
+                if element.key == "X" and not found_one:
+                    first_vertice = element
+                    found_one = True
+                elif element.key == "X":
+                    second_vertice = element
+        return first_vertice, second_vertice
+
+    def print_route(self) -> None:
+        print("\n")
+        cost = 0
+        for row in self.board:
+            row_str = ""
+            for element in row:
+                if element.marked:
+                    row_str += element.key
+                    cost = element.distance
+                else:
+                    row_str += " "
+            print(row_str)
+        print("\n")
+
     def create_graph(self) -> Graph:
         graph = Graph()
         for row_idx, row in enumerate(self.board):
