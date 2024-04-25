@@ -40,6 +40,8 @@ class BoardParser:
             for col_idx, element in enumerate(row):
                 graph.add_vertice(element)
 
+                # TODO add checks for J
+
                 # above edge
                 if self.has_above(row_idx, col_idx):
                     above_element = self.board[row_idx - 1, col_idx]
@@ -63,3 +65,4 @@ class BoardParser:
                     right_element = self.board[row_idx, col_idx + 1]
                     weight = self.get_weight(right_element)
                     graph.add_edge(element, right_element, weight)
+        return graph
