@@ -26,63 +26,103 @@ def test_board_parser_ctor():
 
 
 def test_board_parser_has_above_true():
+    test_file_2 = StringIO("X14\nJ21\nX38")
     bp = BoardParser(test_file_2)
     assert bp.has_above(src_row=1, src_col=0) is True
 
 
 def test_board_parser_has_under_true():
+    test_file_2 = StringIO("X14\nJ21\nX38")
     bp = BoardParser(test_file_2)
     assert bp.has_under(src_row=1, src_col=0) is True
 
 
 def test_board_parser_has_left_true():
+    test_file_2 = StringIO("X14\nJ21\nX38")
     bp = BoardParser(test_file_2)
     assert bp.has_left(src_row=1, src_col=1) is True
 
 
 def test_board_parser_has_right_true():
+    test_file_2 = StringIO("X14\nJ21\nX38")
     bp = BoardParser(test_file_2)
     assert bp.has_right(src_row=1, src_col=0) is True
 
 
 def test_board_parser_has_above_false():
+    test_file_2 = StringIO("X14\nJ21\nX38")
     bp = BoardParser(test_file_2)
     assert bp.has_above(src_row=0, src_col=0) is False
 
 
 def test_board_parser_has_under_false():
+    test_file_2 = StringIO("X14\nJ21\nX38")
     bp = BoardParser(test_file_2)
     assert bp.has_under(src_row=2, src_col=0) is False
 
 
 def test_board_parser_has_left_false():
+    test_file_2 = StringIO("X14\nJ21\nX38")
     bp = BoardParser(test_file_2)
     assert bp.has_left(src_row=1, src_col=0) is False
 
 
 def test_board_parser_has_right_false():
+    test_file_2 = StringIO("X14\nJ21\nX38")
     bp = BoardParser(test_file_2)
     assert bp.has_right(src_row=1, src_col=2) is False
 
 
 def test_board_parser_get_weight_key_is_num():
+    test_file_2 = StringIO("X14\nJ21\nX38")
     bp = BoardParser(test_file_2)
     v = bp.board[0][2]
     assert bp.get_weight(v) == 4
 
 
 def test_board_parser_get_weight_key_is_joker():
+    test_file_2 = StringIO("X14\nJ21\nX38")
     bp = BoardParser(test_file_2)
     v = bp.board[1][0]
     assert bp.get_weight(v) == 0
 
 
 def test_board_parser_get_weight_key_is_X():
+    test_file_2 = StringIO("X14\nJ21\nX38")
     bp = BoardParser(test_file_2)
     v = bp.board[0][0]
     assert bp.get_weight(v) == 0
 
 
 def test_board_parser_graph():
-    # TODO ładny test zrobić
-    pass
+    test_file_2 = StringIO("X14\nJ21\nX38")
+    bp = BoardParser(test_file_2)
+    gr = bp.create_graph()
+    vertices = list(gr.adj_list.keys())
+    x = vertices[0]
+    j = vertices[3]
+    one = vertices[1]
+    one_second = vertices[5]
+    four = vertices[2]
+    three = vertices[7]
+    two = vertices[4]
+    x2 = vertices[6]
+    eigth = vertices[8]
+    assert gr.adj_list[x][0] == (j, 0)
+    assert gr.adj_list[x][1] == (one, 1)
+    assert gr.adj_list[one][0] == (two, 2)
+    assert gr.adj_list[one][1] == (x, 0)
+    assert gr.adj_list[one][2] == (four, 4)
+    assert gr.adj_list[j][0] == (x, 0)
+    assert gr.adj_list[j][1] == (x2, 0)
+    assert gr.adj_list[j][2] == (two, 0)
+    assert gr.adj_list[eigth][0] == (one_second, 1)
+    assert gr.adj_list[eigth][1] == (three, 3)
+    assert gr.adj_list[two][0] == (one, 1)
+    assert gr.adj_list[two][1] == (three, 3)
+    assert gr.adj_list[two][2] == (j, 0)
+    assert gr.adj_list[two][3] == (one_second, 1)
+    assert gr.adj_list[four][0] == (one_second, 1)
+    assert gr.adj_list[four][1] == (one, 1)
+    assert gr.adj_list[x2][0] == (j, 0)
+    assert gr.adj_list[x2][1] == (three, 3)
