@@ -53,14 +53,13 @@ class BoardParser:
         return first_vertice, second_vertice
 
     def print_route(self) -> None:
+        # TODO printowanie kosztu całego przedsięwzięcia
         print("\n")
-        cost = 0
         for row in self.board:
             row_str = ""
             for element in row:
                 if element.marked:
                     row_str += element.key
-                    cost = element.distance
                 else:
                     row_str += " "
             print(row_str)
