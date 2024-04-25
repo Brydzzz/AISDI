@@ -7,7 +7,8 @@ def main():
     parser.add_argument("filename", help="file with board")
     args = parser.parse_args()
     filename = args.filename
-    b = BoardParser(filename)
+    with open(filename, "r") as file:
+        b = BoardParser(file)
     print(b.board)
 
 

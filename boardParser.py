@@ -2,31 +2,36 @@ from graph import Graph, Vertice
 
 
 class BoardParser:
-    def __init__(self, board_file: str) -> None:
-        self.file = board_file
-        self.board: list[list[Vertice]] = self._create_2d_array()
+    def __init__(self, board_file_handle) -> None:
+        self.board: list[list[Vertice]] = self._create_2d_array(
+            board_file_handle
+        )
 
-    def _create_2d_array(self) -> list[list[Vertice]]:
+    def _create_2d_array(self, board_file_handle) -> list[list[Vertice]]:
         board = []
-        with open(self.file) as f:
-            for row in f:
-                row_array = [Vertice(tile) for tile in row.strip()]
-                board.append(row_array)
+        for row in board_file_handle:
+            row_array = [Vertice(tile) for tile in row.strip()]
+            board.append(row_array)
         return board
 
     def has_above(self, src_row: int, src_col: int) -> bool:
+        # TODO implement
         return True
 
     def has_under(self, src_row: int, src_col: int) -> bool:
+        # TODO implement
         return True
 
     def has_left(self, src_row: int, src_col: int) -> bool:
+        # TODO implement
         return True
 
     def has_right(self, src_row: int, src_col: int) -> bool:
+        # TODO implement
         return True
 
     def get_weight(self, vertice: Vertice) -> int:
+        # TODO implement
         pass
 
     def create_graph(self) -> Graph:
