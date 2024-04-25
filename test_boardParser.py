@@ -126,3 +126,13 @@ def test_board_parser_graph():
     assert gr.adj_list[four][1] == (one, 1)
     assert gr.adj_list[x2][0] == (j, 0)
     assert gr.adj_list[x2][1] == (three, 3)
+
+
+def test_find_start_end():
+    test_file_2 = StringIO("X14\nJ21\nX38")
+    bp = BoardParser(test_file_2)
+    gr = bp.create_graph()
+    vertices = list(gr.adj_list.keys())
+    start, end = bp.find_start_end()
+    assert start == vertices[0]
+    assert end == vertices[6]
