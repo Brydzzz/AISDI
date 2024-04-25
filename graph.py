@@ -7,6 +7,7 @@ class Vertice:
         self.parent: Vertice = None
         self.distance: int = sys.maxsize
         self.checked: bool = False
+        self.marked: bool = False
 
     def __lt__(self, other) -> bool:
         return self.distance < other.distance
