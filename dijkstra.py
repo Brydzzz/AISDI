@@ -26,4 +26,14 @@ def dijkstra(graph, start, end) -> None:
             source.checked = True
         else:
             heappop(queue)
+    mark_vertices(start, end)
     return
+
+
+def mark_vertices(start, end) -> None:
+    start.marked = True
+    end.marked = True
+    vertice = end
+    while vertice.parent:
+        vertice.parent.marked = True
+        vertice = vertice.parent
