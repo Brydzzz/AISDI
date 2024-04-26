@@ -65,6 +65,18 @@ class BoardParser:
             print(row_str)
         print("\n")
 
+    def save_route(self, file) -> None:
+        with open(file, "w") as file_handler:
+            for row in self.board:
+                row_str = ""
+                for element in row:
+                    if element.marked:
+                        row_str += element.key
+                    else:
+                        row_str += " "
+                row_str += "\n"
+                file_handler.writelines(row_str)
+
     def create_graph(self) -> Graph:
         graph = Graph()
         for row_idx, row in enumerate(self.board):
