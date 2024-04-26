@@ -14,6 +14,7 @@ def main():
     x1, x2 = b.find_start_end()
     dijkstra(gr, x1, x2)
     b.print_route()
+    b.save_route("route.txt")
 
 
 if __name__ == "__main__":
