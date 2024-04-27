@@ -1,7 +1,7 @@
 from random import choice, randint
 
 
-def generate_random_board(x, y):
+def generate_random_board(x, y) -> None:
     list = ["J", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     # title = f"random_board{x}x{y}.txt"
     with open("random_board.txt", mode="w") as file_handler:
