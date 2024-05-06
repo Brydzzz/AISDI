@@ -13,8 +13,8 @@ def main():
     gr = b.create_graph()
     x1, x2 = b.find_start_end()
     dijkstra(gr, x1, x2)
-    b.print_route()
-    b.save_route("route.txt")
+    b.print_route(x2)
+    b.save_route("route.txt", x2)
 
 
 if __name__ == "__main__":

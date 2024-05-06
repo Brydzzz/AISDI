@@ -5,14 +5,15 @@ def generate_random_board(x, y) -> None:
     list = ["J", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     # title = f"random_board{x}x{y}.txt"
     with open("random_board.txt", mode="w") as file_handler:
-        x1_pos = (randint(0, x), randint(0, y))
-        x2_pos = (randint(0, x), randint(0, y))
+        x1_pos = (randint(1, x - 1), randint(1, y - 1))
+        x2_pos = (randint(1, x - 1), randint(1, y - 1))
+        print(x1_pos, x2_pos)
         counter = 0
         while counter != y:
             line = ""
-            while len(line) != x:
-                if (len(line) == x1_pos[0] and counter == x1_pos[1]) or (
-                    len(line) == x2_pos[0] and counter == x2_pos[1]
+            while len(line) - 1 != x:
+                if (len(line) - 1 == x1_pos[0] and counter == x1_pos[1]) or (
+                    len(line) - 1 == x2_pos[0] and counter == x2_pos[1]
                 ):
                     element = "X"
                 else:
@@ -24,4 +25,4 @@ def generate_random_board(x, y) -> None:
 
 
 if __name__ == "__main__":
-    generate_random_board(200, 1000)
+    generate_random_board(20, 20)
