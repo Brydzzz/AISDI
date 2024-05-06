@@ -60,7 +60,7 @@ class BoardParser:
                 else:
                     row_str += " "
             print(row_str)
-        print(f"Cost:{end.distance}")
+        print(f"\nCost:{end.distance}")
         print("\n")
 
     def save_route(self, file, end) -> None:
@@ -74,7 +74,7 @@ class BoardParser:
                         row_str += " "
                 row_str += "\n"
                 file_handler.writelines(row_str)
-            file_handler.writelines(f"Cost: {end.distance}")
+            file_handler.writelines(f"\nCost: {end.distance}")
 
     def create_graph(self) -> Graph:
         graph = Graph()
