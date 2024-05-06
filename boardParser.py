@@ -51,7 +51,6 @@ class BoardParser:
         return first_vertice, second_vertice
 
     def print_route(self, end) -> None:
-        # TODO printowanie kosztu całego przedsięwzięcia
         print("\n")
         for row in self.board:
             row_str = ""
