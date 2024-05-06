@@ -8,20 +8,20 @@ def generate_random_board(x, y) -> None:
         x1_pos = (randint(1, x - 1), randint(1, y - 1))
         x2_pos = (randint(1, x - 1), randint(1, y - 1))
         print(x1_pos, x2_pos)
-        counter = 0
-        while counter != y:
+        row_number = 0
+        while row_number != y:
             line = ""
             while len(line) - 1 != x:
-                if (len(line) - 1 == x1_pos[0] and counter == x1_pos[1]) or (
-                    len(line) - 1 == x2_pos[0] and counter == x2_pos[1]
-                ):
+                if (
+                    len(line) - 1 == x1_pos[0] and row_number == x1_pos[1]
+                ) or (len(line) - 1 == x2_pos[0] and row_number == x2_pos[1]):
                     element = "X"
                 else:
                     element = choice(list)
                 line += element
             line += "\n"
             file_handler.writelines(line)
-            counter += 1
+            row_number += 1
 
 
 if __name__ == "__main__":
