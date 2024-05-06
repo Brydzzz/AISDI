@@ -28,19 +28,19 @@ def test_board_parser_ctor():
 def test_board_parser_has_above_true():
     test_file_2 = StringIO("X14\nJ21\nX38")
     bp = BoardParser(test_file_2)
-    assert bp.has_above(src_row=1, src_col=0) is True
+    assert bp.has_above(src_row=1) is True
 
 
 def test_board_parser_has_under_true():
     test_file_2 = StringIO("X14\nJ21\nX38")
     bp = BoardParser(test_file_2)
-    assert bp.has_under(src_row=1, src_col=0) is True
+    assert bp.has_under(src_row=1) is True
 
 
 def test_board_parser_has_left_true():
     test_file_2 = StringIO("X14\nJ21\nX38")
     bp = BoardParser(test_file_2)
-    assert bp.has_left(src_row=1, src_col=1) is True
+    assert bp.has_left(src_col=1) is True
 
 
 def test_board_parser_has_right_true():
@@ -52,19 +52,19 @@ def test_board_parser_has_right_true():
 def test_board_parser_has_above_false():
     test_file_2 = StringIO("X14\nJ21\nX38")
     bp = BoardParser(test_file_2)
-    assert bp.has_above(src_row=0, src_col=0) is False
+    assert bp.has_above(src_row=0) is False
 
 
 def test_board_parser_has_under_false():
     test_file_2 = StringIO("X14\nJ21\nX38")
     bp = BoardParser(test_file_2)
-    assert bp.has_under(src_row=2, src_col=0) is False
+    assert bp.has_under(src_row=2) is False
 
 
 def test_board_parser_has_left_false():
     test_file_2 = StringIO("X14\nJ21\nX38")
     bp = BoardParser(test_file_2)
-    assert bp.has_left(src_row=1, src_col=0) is False
+    assert bp.has_left(src_col=0) is False
 
 
 def test_board_parser_has_right_false():

@@ -70,4 +70,4 @@ def test_dijkstra_print_route():
     x = vertices[0]
     x2 = vertices[6]
     dijkstra(gr, x, x2)
-    bp.print_route()
+    bp.print_route(x2)
