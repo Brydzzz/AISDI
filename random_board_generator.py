@@ -2,7 +2,7 @@ from random import choice, randint
 import argparse
 
 
-def generate_random_board(x, y, filename) -> None:
+def generate_random_board(x: int, y: int, filename: str) -> None:
     list = ["J", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     with open(filename, mode="w") as file_handler:
         x1_pos = (randint(1, x - 1), randint(1, y - 1))
