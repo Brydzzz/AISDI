@@ -1,7 +1,9 @@
 from heapq import heappush, heappop
 
+from graph import Graph, Vertice
 
-def dijkstra(graph, start, end) -> None:
+
+def dijkstra(graph: Graph, start: Vertice, end: Vertice) -> None:
     queue = [start]
     start.distance = 0
     while queue:
@@ -22,7 +24,7 @@ def dijkstra(graph, start, end) -> None:
     mark_vertices(start, end)
 
 
-def mark_vertices(start, end) -> None:
+def mark_vertices(start: Vertice, end: Vertice) -> None:
     start.marked = True
     end.marked = True
     vertice = end
