@@ -14,17 +14,17 @@ class BoardParser:
             board.append(row_array)
         return board
 
-    def has_above(self, src_row: int, src_col: int) -> bool:
+    def has_above(self, src_row: int) -> bool:
         if src_row == 0:
             return False
         return True
 
-    def has_under(self, src_row: int, src_col: int) -> bool:
+    def has_under(self, src_row: int) -> bool:
         if src_row + 1 == len(self.board):
             return False
         return True
 
-    def has_left(self, src_row: int, src_col: int) -> bool:
+    def has_left(self, src_col: int) -> bool:
         if src_col == 0:
             return False
         return True
@@ -40,14 +40,12 @@ class BoardParser:
         return int(vertice.key)
 
     def find_start_end(self) -> tuple[Vertice, Vertice]:
-        found_one = False
         first_vertice = None
         second_vertice = None
         for row in self.board:
             for element in row:
-                if element.key == "X" and not found_one:
+                if element.key == "X" and not first_vertice:
                     first_vertice = element
-                    found_one = True
                 elif element.key == "X":
                     second_vertice = element
         return first_vertice, second_vertice
@@ -86,7 +84,7 @@ class BoardParser:
                 graph.add_vertice(element)
 
                 # above edge
-                if self.has_above(row_idx, col_idx):
+                if self.has_above(row_idx):
                     above_element = self.board[row_idx - 1][col_idx]
                     weight = (
                         0
@@ -96,7 +94,7 @@ class BoardParser:
                     graph.add_edge(element, above_element, weight)
 
                 # under edge
-                if self.has_under(row_idx, col_idx):
+                if self.has_under(row_idx):
                     under_element = self.board[row_idx + 1][col_idx]
                     weight = (
                         0
@@ -106,7 +104,7 @@ class BoardParser:
                     graph.add_edge(element, under_element, weight)
 
                 # left edge
-                if self.has_left(row_idx, col_idx):
+                if self.has_left(col_idx):
                     left_element = self.board[row_idx][col_idx - 1]
                     weight = (
                         0
