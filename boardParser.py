@@ -50,7 +50,7 @@ class BoardParser:
                     second_vertice = element
         return first_vertice, second_vertice
 
-    def print_route(self, end) -> None:
+    def print_route(self, end: Vertice) -> None:
         print("\n")
         for row in self.board:
             row_str = ""
@@ -63,7 +63,7 @@ class BoardParser:
         print(f"\nCost:{end.distance}")
         print("\n")
 
-    def save_route(self, file, end) -> None:
+    def save_route(self, file: str, end: Vertice) -> None:
         with open(file, "w") as file_handler:
             for row in self.board:
                 row_str = ""
