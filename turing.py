@@ -32,13 +32,18 @@ class Turing:
             curr = (state, "_")
             if idx >= 0 and idx < len(self.tape):
                 curr = (state, self.tape[idx])
-            next = self.instructions.get(curr)
-            if not next:
-                break
-            new_symbol, direction, new_state = next
-            if new_symbol != "_":
-                self.tape = self.tape[:idx] + new_symbol + self.tape[idx + 1 :]
+            if curr[1] == " ":
+                next = self.instructions.get((state, "_"))
             else:
+                next = self.instructions.get(curr)
+            if not next:
+                next = self.instructions.get((state, "*"))
+                if not next:
+                    break
+            new_symbol, direction, new_state = next
+            if new_symbol != "_" and new_symbol != "*":
+                self.tape = self.tape[:idx] + new_symbol + self.tape[idx + 1 :]
+            elif new_symbol != "*" and idx >= 0:
                 self.tape = self.tape[:idx] + "" + self.tape[idx + 1 :]
             if direction == "L":
                 idx -= 1
