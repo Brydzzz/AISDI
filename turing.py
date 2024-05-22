@@ -15,14 +15,13 @@ class Turing:
         return instr_dict
 
     def _display_curr_state(self, idx: int, state: str) -> str:
-        if idx >= 0 and idx < len(self.tape):
-            print(f"{self.tape} {state}\n{' '*idx}^")
+        tape_str = self.tape.strip()
+        if idx >= 0 and idx < len(tape_str):
+            print(f"{tape_str} {state}\n{' '*idx}^")
         elif idx < 0:
-            print(f"{'_'*(-idx)}{self.tape} {state}\n^")
+            print(f"{'_'*(-idx)}{tape_str} {state}\n^")
         else:
-            print(
-                f"{self.tape}{'_'*(idx+1-len(self.tape))} {state}\n{' '*idx}^"
-            )
+            print(f"{tape_str}{'_'*(idx+1-len(tape_str))} {state}\n{' '*idx}^")
 
     def run(self) -> str:
         state = "init"
@@ -41,13 +40,26 @@ class Turing:
                 if not next:
                     break
             new_symbol, direction, new_state = next
-            if new_symbol != "_" and new_symbol != "*":
-                self.tape = self.tape[:idx] + new_symbol + self.tape[idx + 1 :]
+            if new_symbol == "_":
+                if idx < 0:
+                    self.tape = " " + self.tape
+                    idx += 1
+                else:
+                    self.tape = self.tape[:idx] + " " + self.tape[idx + 1 :]
+            elif new_symbol != "_" and new_symbol != "*":
+                if idx < 0:
+                    self.tape = new_symbol + self.tape
+                    idx += 1
+                else:
+                    self.tape = (
+                        self.tape[:idx] + new_symbol + self.tape[idx + 1 :]
+                    )
             elif new_symbol != "*" and idx >= 0:
                 self.tape = self.tape[:idx] + "" + self.tape[idx + 1 :]
             if direction == "L":
                 idx -= 1
             elif direction == "R":
                 idx += 1
+            # self.tape = self.tape.strip()
             state = new_state
         self._display_curr_state(idx, state)
