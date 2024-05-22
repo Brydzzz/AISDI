@@ -15,7 +15,34 @@ class Turing:
         return instr_dict
 
     def _display_curr_state(self, idx: int, state: str) -> str:
-        pass
+        if idx >= 0 and idx < len(self.tape):
+            print(f"{self.tape} {state}\n{' '*idx}^")
+        elif idx < 0:
+            print(f"{'_'*(-idx)}{self.tape} {state}\n^")
+        else:
+            print(
+                f"{self.tape}{'_'*(idx+1-len(self.tape))} {state}\n{' '*idx}^"
+            )
 
     def run(self) -> str:
-        pass
+        state = "init"
+        idx = 0
+        while "halt" not in state:
+            self._display_curr_state(idx, state)
+            curr = (state, "_")
+            if idx >= 0 and idx < len(self.tape):
+                curr = (state, self.tape[idx])
+            next = self.instructions.get(curr)
+            if not next:
+                break
+            new_symbol, direction, new_state = next
+            if new_symbol != "_":
+                self.tape = self.tape[:idx] + new_symbol + self.tape[idx + 1 :]
+            else:
+                self.tape = self.tape[:idx] + "" + self.tape[idx + 1 :]
+            if direction == "L":
+                idx -= 1
+            elif direction == "R":
+                idx += 1
+            state = new_state
+        self._display_curr_state(idx, state)
