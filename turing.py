@@ -29,8 +29,12 @@ class Turing:
         while "halt" not in state:
             self._display_curr_state(idx, state)
             curr = (state, "_")
-            if idx >= 0 and idx < len(self.tape):
-                curr = (state, self.tape[idx])
+            if (
+                idx >= 0
+                and idx < len(self.tape.strip())
+                and len(self.tape.strip()) != 0
+            ):
+                curr = (state, self.tape.strip()[idx])
             if curr[1] == " ":
                 next = self.instructions.get((state, "_"))
             else:
@@ -40,20 +44,22 @@ class Turing:
                 if not next:
                     break
             new_symbol, direction, new_state = next
+
             if new_symbol == "_":
-                if idx < 0:
+                if curr[1] == " ":
+                    self.tape = self.tape
+                elif idx < 0:
                     self.tape = " " + self.tape
-                    idx += 1
+                elif idx >= len(self.tape.strip()):
+                    self.tape += " "
                 else:
-                    self.tape = self.tape[:idx] + " " + self.tape[idx + 1 :]
+                    self.insert_sign(idx, "")
             elif new_symbol != "_" and new_symbol != "*":
                 if idx < 0:
                     self.tape = new_symbol + self.tape
                     idx += 1
                 else:
-                    self.tape = (
-                        self.tape[:idx] + new_symbol + self.tape[idx + 1 :]
-                    )
+                    self.insert_sign(idx, new_symbol)
             elif new_symbol != "*" and idx >= 0:
                 self.tape = self.tape[:idx] + "" + self.tape[idx + 1 :]
             if direction == "L":
@@ -63,3 +69,11 @@ class Turing:
             # self.tape = self.tape.strip()
             state = new_state
         self._display_curr_state(idx, state)
+
+    def insert_sign(self, idx, symbol):
+        t_list = [*self.tape.strip()]
+        if idx < len(t_list):
+            t_list[idx] = symbol
+        else:
+            t_list.append(symbol)
+        self.tape = "".join(t_list)

@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Main",
+            "name": "palindrome",
             "type": "debugpy",
             "request": "launch",
             "program": "main.py",
@@ -13,12 +13,28 @@
             "args": ["1001001", "instructions2.txt"]
         },
         {
-            "name": "current_file",
+            "name": "add_one",
             "type": "debugpy",
             "request": "launch",
-            "program": "${file}",
+            "program": "main.py",
             "console": "integratedTerminal",
             "args": ["1011", "instructions.txt"]
+        },
+        {
+            "name": "addition",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "main.py",
+            "console": "integratedTerminal",
+            "args": ["110110 101011", "instructions3.txt"]
+        },
+        {
+            "name": "parentheses",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "main.py",
+            "console": "integratedTerminal",
+            "args": ["12(2+(3^(4-1)))", "instructions4.txt"]
         }
     ],
 
