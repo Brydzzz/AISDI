@@ -54,6 +54,9 @@ class Turing:
                     self.tape += " "
                 else:
                     self.insert_sign(idx, "")
+                    if direction == "R":
+                        state = new_state
+                        continue
             elif new_symbol != "_" and new_symbol != "*":
                 if idx < 0:
                     self.tape = new_symbol + self.tape
