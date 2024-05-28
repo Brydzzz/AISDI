@@ -23,9 +23,7 @@ class Turing:
         elif idx < 0:
             print(f"{'_'*(-idx)}{tape_str} {state}\n^")
         else:
-            print(
-                f"{tape_str}{'_'*(idx+1-len(tape_str))} {state}\n{' '*idx}^"
-            )
+            print(f"{tape_str}{'_'*(idx+1-len(tape_str))} {state}\n{' '*idx}^")
 
     def run(self) -> str:
         state = "init"
@@ -40,9 +38,7 @@ class Turing:
             else:
                 next = self.instructions.get(curr)
             if not next:
-                next = self.instructions.get((state, "*"))
-                if not next:
-                    break
+                break
             new_symbol, direction, new_state = next
 
             if idx == (len(self.tape) - 2) and self.tape[-1] == " ":
@@ -60,13 +56,13 @@ class Turing:
                     if direction == "R":
                         state = new_state
                         continue
-            elif new_symbol != "_" and new_symbol != "*":
+            elif new_symbol != "_":
                 if idx < 0:
                     self.tape = new_symbol + self.tape
                     idx += 1
                 else:
                     self.insert_sign(idx, new_symbol)
-            elif new_symbol != "*" and idx >= 0:
+            elif idx >= 0:
                 self.tape = self.tape[:idx] + "" + self.tape[idx + 1 :]
             if direction == "L":
                 idx -= 1
