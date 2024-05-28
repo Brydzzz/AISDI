@@ -58,3 +58,31 @@ def test_3rd_a_to_z():
     tape = "AAAAA000A1A1A011"
     m = Turing(tape, inst)
     assert m.run() == "AAZAA000Z1A1A011"
+
+
+def test_operations_outside_left():
+    inst = [
+        "init 1 1 L init",
+        "init 0 0 L init",
+        "init _ _ L out1",
+        "out1 _ 1 * halt",
+    ]
+    tape = "11001"
+    m = Turing(tape, inst)
+    print("\n")
+    s = m.run()
+    assert s == "1 11001"
+
+
+def test_operations_outside_right():
+    inst = [
+        "init 1 1 R init",
+        "init 0 0 R init",
+        "init _ _ R out1",
+        "out1 _ 1 * halt",
+    ]
+    tape = "10001"
+    m = Turing(tape, inst)
+    print("\n")
+    s = m.run()
+    assert s == "10001 1"
