@@ -1,0 +1,12 @@
+init A A R foundFirstA
+init _ _ * halt1
+init 0 0 R init
+init 1 1 R init
+foundFirstA A A R foundSecondA
+foundFirstA _ _ * halt2
+foundFirstA 0 0 R foundFirstA
+foundFirstA 1 1 R foundFirstA
+foundSecondA A Z R init
+foundSecondA _ _ * halt3
+foundSecondA 0 0 R init
+foundSecondA 1 1 R init

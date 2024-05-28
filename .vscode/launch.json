@@ -10,7 +10,10 @@
             "request": "launch",
             "program": "main.py",
             "console": "integratedTerminal",
-            "args": ["1001001", "instructions2.txt"]
+            "args": [
+                "1001001",
+                "instructions2.txt"
+            ]
         },
         {
             "name": "add_one",
@@ -18,7 +21,10 @@
             "request": "launch",
             "program": "main.py",
             "console": "integratedTerminal",
-            "args": ["1011", "instructions.txt"]
+            "args": [
+                "1011",
+                "instructions.txt"
+            ]
         },
         {
             "name": "addition",
@@ -26,7 +32,10 @@
             "request": "launch",
             "program": "main.py",
             "console": "integratedTerminal",
-            "args": ["110110 101011", "instructions3.txt"]
+            "args": [
+                "110110 101011",
+                "instructions3.txt"
+            ]
         },
         {
             "name": "parentheses",
@@ -34,8 +43,32 @@
             "request": "launch",
             "program": "main.py",
             "console": "integratedTerminal",
-            "args": ["12(2+(3^(4-1)))", "instructions4.txt"]
+            "args": [
+                "12(2+(3^(4-1)))",
+                "instructions4.txt"
+            ]
+        },
+        {
+            "name": "Every 3rd A to Z",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "A0AA11AAAA000000A1AAAAA",
+                "a.txt"
+            ]
+        },
+        {
+            "name": "U2 neg",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "01001010",
+                "u2neg.txt"
+            ]
         }
     ],
-
 }
