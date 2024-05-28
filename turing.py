@@ -75,6 +75,7 @@ class Turing:
                 idx += 1
             state = new_state
         self._display_curr_state(idx, state)
+        return self.tape.strip()
 
     def insert_sign(self, idx, symbol):
         t_list = [*self.tape.strip()]
