@@ -34,7 +34,7 @@
             "console": "integratedTerminal",
             "args": [
                 "110110 101011",
-                "instructions3.txt"
+                "add.txt"
             ]
         },
         {
