@@ -44,6 +44,7 @@ class Turing:
             if idx == (len(self.tape) - 2) and self.tape[-1] == " ":
                 # remove redundant spaces from tape when traversing back
                 self.tape = self.tape[: len(self.tape) - 1]
+
             if new_symbol == "_":
                 if curr[1] == " ":
                     self.tape = self.tape
@@ -62,8 +63,6 @@ class Turing:
                     idx += 1
                 else:
                     self.insert_sign(idx, new_symbol)
-            elif idx >= 0:
-                self.tape = self.tape[:idx] + "" + self.tape[idx + 1 :]
             if direction == "L":
                 idx -= 1
             elif direction == "R":
