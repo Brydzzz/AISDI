@@ -10,8 +10,8 @@ def main():
     file = args.file
     with open(file, "r") as f:
         i_list = f.readlines()
-    MACHINE = Turing(args.tape, i_list)
-    MACHINE.run()
+    machine = Turing(args.tape, i_list)
+    machine.run()
 
 
 if __name__ == "__main__":
