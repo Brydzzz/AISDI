@@ -8,5 +8,5 @@ foundFirstA 0 0 R foundFirstA
 foundFirstA 1 1 R foundFirstA
 foundSecondA A Z R init
 foundSecondA _ _ * halt3
-foundSecondA 0 0 R init
-foundSecondA 1 1 R init
+foundSecondA 0 0 R foundSecondA
+foundSecondA 1 1 R foundSecondA
