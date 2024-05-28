@@ -86,3 +86,30 @@ def test_operations_outside_right():
     print("\n")
     s = m.run()
     assert s == "10001 1"
+
+
+def test_operations_add():
+    inst = [
+        "init 0 0 R init",
+        "init 1 1 R init",
+        "init _ _ R one",
+        "one 0 0 R one",
+        "one 1 1 R one",
+        "one _ _ L two",
+        "two 0 1 L two",
+        "two 1 0 L three",
+        "two _ _ R five",
+        "three 0 0 L three",
+        "three 1 1 L three",
+        "three _ _ L four",
+        "four 0 1 R init",
+        "four 1 0 L four",
+        "four _ 1 R init",
+        "five 1 _ R five",
+        "five _ _ * halt",
+    ]
+    tape = "1010 111"
+    m = Turing(tape, inst)
+    print("\n")
+    s = m.run()
+    assert s == "10001"
