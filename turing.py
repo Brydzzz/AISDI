@@ -33,12 +33,8 @@ class Turing:
         while "halt" != state[:4]:
             self._display_curr_state(idx, state)
             curr = (state, "_")
-            if (
-                idx >= 0
-                and idx < len(self.tape.strip())
-                and len(self.tape.strip()) != 0
-            ):
-                curr = (state, self.tape.strip()[idx])
+            if idx >= 0 and idx < len(self.tape) and len(self.tape) != 0:
+                curr = (state, self.tape[idx])
             if curr[1] == " ":
                 next = self.instructions.get((state, "_"))
             else:
@@ -49,12 +45,15 @@ class Turing:
                     break
             new_symbol, direction, new_state = next
 
+            if idx == (len(self.tape) - 2) and self.tape[-1] == " ":
+                # remove redundant spaces from tape when traversing back
+                self.tape = self.tape[: len(self.tape) - 1]
             if new_symbol == "_":
                 if curr[1] == " ":
                     self.tape = self.tape
                 elif idx < 0:
                     self.tape = " " + self.tape
-                elif idx >= len(self.tape.strip()):
+                elif idx >= len(self.tape):
                     self.tape += " "
                 else:
                     self.insert_sign(idx, "")
@@ -78,7 +77,7 @@ class Turing:
         return self.tape.strip()
 
     def insert_sign(self, idx, symbol):
-        t_list = [*self.tape.strip()]
+        t_list = [*self.tape]
         if idx < len(t_list):
             t_list[idx] = symbol
         else:
