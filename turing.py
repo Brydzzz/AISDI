@@ -9,6 +9,8 @@ class Turing:
         instr_dict = {}
         for instr in instructions:
             elements = instr.strip().split()
+            if len(elements) != 5:
+                raise ValueError("Incorrect instruction format detected")
             curr = (elements[0], elements[1])
             next = (elements[2], elements[3], elements[4])
             instr_dict[curr] = next
@@ -21,12 +23,14 @@ class Turing:
         elif idx < 0:
             print(f"{'_'*(-idx)}{tape_str} {state}\n^")
         else:
-            print(f"{tape_str}{'_'*(idx+1-len(tape_str))} {state}\n{' '*idx}^")
+            print(
+                f"{tape_str}{'_'*(idx+1-len(tape_str))} {state}\n{' '*idx}^"
+            )
 
     def run(self) -> str:
         state = "init"
         idx = 0
-        while "halt" not in state:
+        while "halt" != state[:4]:
             self._display_curr_state(idx, state)
             curr = (state, "_")
             if (
@@ -69,7 +73,6 @@ class Turing:
                 idx -= 1
             elif direction == "R":
                 idx += 1
-            # self.tape = self.tape.strip()
             state = new_state
         self._display_curr_state(idx, state)
 
