@@ -113,3 +113,13 @@ def test_operations_add():
     print("\n")
     s = m.run()
     assert s == "10001"
+
+
+def test_indeterminate():
+    # if states repeat it should take the last instruction
+    inst = ["init 0 1 R init", "init 0 0 R init", "init 1 1 * halt"]
+    tape = "00001000"
+    m = Turing(tape, inst)
+    print("\n")
+    s = m.run()
+    assert s == "00001000"
