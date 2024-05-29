@@ -33,7 +33,7 @@
             "program": "main.py",
             "console": "integratedTerminal",
             "args": [
-                "110110 101011",
+                "110 11",
                 "add.txt"
             ]
         },

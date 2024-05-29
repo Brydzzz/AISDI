@@ -1,6 +1,6 @@
 init 1 0 R init
 init 0 1 R init
-init _ _ L inc
+init _ _ * inc
 inc 1 1 R inc
 inc 0 0 R inc
 inc _ _ L carry
