@@ -23,13 +23,16 @@ class Turing:
         elif idx < 0:
             print(f"{'_'*(-idx)}{tape_str} {state}\n^")
         else:
-            print(f"{tape_str}{'_'*(idx+1-len(tape_str))} {state}\n{' '*idx}^")
+            print(
+                f"{tape_str}{'_'*(idx+1-len(tape_str))} {state}\n{' '*idx}^"
+            )
 
     def run(self) -> str:
         state = "init"
         idx = 0
         while "halt" != state[:4]:
             self._display_curr_state(idx, state)
+
             curr = (state, "_")
             if idx >= 0 and idx < len(self.tape) and len(self.tape) != 0:
                 curr = (state, self.tape[idx])
@@ -54,19 +57,23 @@ class Turing:
                     self.tape += " "
                 else:
                     self.insert_sign(idx, "")
-                    if direction == "R":
+                    if (
+                        direction == "R"
+                    ):  # we deleted char so we don't want to change index
                         state = new_state
                         continue
-            elif new_symbol != "_":
+            else:
                 if idx < 0:
                     self.tape = new_symbol + self.tape
                     idx += 1
                 else:
                     self.insert_sign(idx, new_symbol)
+
             if direction == "L":
                 idx -= 1
             elif direction == "R":
                 idx += 1
+
             state = new_state
         self._display_curr_state(idx, state)
         return self.tape.strip()
