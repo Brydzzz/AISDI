@@ -1,0 +1,74 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "palindrome",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "1001001",
+                "instructions2.txt"
+            ]
+        },
+        {
+            "name": "add_one",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "1011",
+                "instructions.txt"
+            ]
+        },
+        {
+            "name": "addition",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "110 11",
+                "add.txt"
+            ]
+        },
+        {
+            "name": "parentheses",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "12(2+(3^(4-1)))",
+                "instructions4.txt"
+            ]
+        },
+        {
+            "name": "Every 3rd A to Z",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "A0AA11AAAA000000A1AAAAA",
+                "a.txt"
+            ]
+        },
+        {
+            "name": "U2 neg",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "01001010",
+                "u2neg.txt"
+            ]
+        }
+    ],
+}
